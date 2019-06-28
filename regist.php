@@ -40,8 +40,8 @@
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Username">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
-      <!-- </div>
-      <div class="form-group has-feedback">
+      </div>
+      <!-- <div class="form-group has-feedback">
         <input type="email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div> -->
