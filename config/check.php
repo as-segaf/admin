@@ -24,7 +24,7 @@
 
 			}
 		}else{
-			header('location:../index.php?pesan=passwordsalah')
+			header('location:../index.php?pesan=passwordsalah');
 		}
 	}else{
 		header('location:../index.php?pesan=gagal');
