@@ -4,7 +4,7 @@
 	$username = $_POST['username'];
 	$password = trim($_POST['password']);
 	$select   = mysqli_query($host, "SELECT * FROM user WHERE username='$username");
-	$cek  	  = mysqli_num_rows($select)
+	$cek  	  = mysqli_num_rows($select);
 	$hasil    = mysqli_fetch_array($select); 
 
 	if ($cek == 1) {
