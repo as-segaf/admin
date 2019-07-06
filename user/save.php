@@ -24,8 +24,17 @@
 
 	$insert = "INSERT INTO survey (id_user,ngaji,dhuha,tahajud,ngoding,ngetik,belajar,tidur,bangun,sholat,date_survey) VALUES ('$id_user', '$ngaji', '$dhuha', '$tahajud', '$ngoding', '$ngetik', '$belajar', '$tidur', '$bangun', '$sholat', '$date')";
 
+	//nilai
+	$agama		  = mysqli_query($host, "SELECT AVG((ngaji+dhuha+tahajud)/3) WHERE date_survey='$date'");
+	$it    		  = mysqli_query($host, "SELECT AVG((ngoding+ngetik+belajar)/3) WHERE date_survey='$date'");
+	$kedisiplinan = mysqli_query($host, "SELECT AVG((tidur+bangun+sholat)/3) WHERE date_survey='$date'");
+
+	$insert_nilai = mysqli_query($host, "INSERT INTO nilai (agama, it, kedisiplinan) VALUES ('$agama', '$it', '$kedisiplinan')");
+
 	if (mysqli_query($host,$insert)) {
-		header('location:index.php');
+		if ($insert_nilai) {
+			header('location:index.php');
+		}
 
 	}else{
 		echo "gagal";
