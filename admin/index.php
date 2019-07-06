@@ -79,9 +79,7 @@
                 <img src="../assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php 
-                    echo $_SESSION['username'];
-                   ?>
+                  Alexander Pierce - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -170,7 +168,7 @@
     <section class="content-header">
       <h1>
         Dashboard
-        <small>User</small>
+        <small>Admin</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -183,160 +181,65 @@
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
-        <section class="col-lg-12 connectedSortable">
-          
-                
+        <section class="col-lg-12 connectedSortable">                
           <!-- general form elements disabled -->
-          <div class="box box-warning">
+          <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Simple Form</h3>
+              <h3 class="box-title"></h3>
             </div>
-
-            <?php 
-              $id_user     = $_SESSION['id_user'];
-              $date        = date("Y-m-d");
-              $select      = mysqli_query($host,"SELECT id FROM survey WHERE id_user ='$id_user' AND date_survey='$date'");
-              $data        = mysqli_num_rows($select);
-
-              if ($data == 0) {
-             ?>
-            <!-- /.box-header -->
             <div class="box-body">
-              <form role="form" action="save.php" method="post">
-                <!-- select -->
-                <div class="form-group">
-                  <label>Agama# Apakah antum mengaji?</label>
-                  <select class="form-control" name="ngaji" required>
-                    <option value="">Pilih salah satu</option>
-                    <option value=5>Selalu</option>
-                    <option value=4>Sering</option>
-                    <option value=3>Kadang</option>
-                    <option value=2>Jarang</option>
-                    <option value=1>Tidak pernah</option>
-                  </select>
-                </div>
+              <!-- Small boxes (Stat box) -->
+              <div class="row">
+                <div class="col-lg-3 col-xs-6">
+                  <!-- small box -->
+                  <div class="small-box bg-aqua">
+                    <div class="inner">
+                      <h3>150</h3>
 
-                <div class="form-group">
-                  <label>Agama# Apakah antum sholat dhuha?</label>
-                  <select class="form-control" name="dhuha" required>
-                    <option value="">Pilih salah satu</option>
-                    <option value=5>Selalu</option>
-                    <option value=4>Sering</option>
-                    <option value=3>Kadang</option>
-                    <option value=2>Jarang</option>
-                    <option value=1>Tidak pernah</option>
-                  </select>
+                      <p>Divisi Agama</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fa fa-shopping-cart"></i>
+                    </div>
+                  </div>
                 </div>
+                <!-- ./col -->
+                <!-- Small boxes (Stat box) -->
+              <div class="row">
+                <div class="col-lg-3 col-xs-6">
+                  <!-- small box -->
+                  <div class="small-box bg-aqua">
+                    <div class="inner">
+                      <h3>150</h3>
 
-                <div class="form-group">
-                  <label>Agama# Apakah antum sholat tahajud?</label>
-                  <select class="form-control" name="tahajud" required>
-                    <option value="">Pilih salah satu</option>
-                    <option value=5>Selalu</option>
-                    <option value=4>Sering</option>
-                    <option value=3>Kadang</option>
-                    <option value=2>Jarang</option>
-                    <option value=1>Tidak pernah</option>
-                  </select>
+                      <p>Divisi IT</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fa fa-shopping-cart"></i>
+                    </div>
+                  </div>
                 </div>
+                <!-- ./col -->
+                <!-- Small boxes (Stat box) -->
+              <div class="row">
+                <div class="col-lg-3 col-xs-6">
+                  <!-- small box -->
+                  <div class="small-box bg-aqua">
+                    <div class="inner">
+                      <h3>150</h3>
 
-                <div class="form-group">
-                  <label>IT# Apakah antum ngoding?</label>
-                  <select class="form-control" name="ngoding" required>
-                    <option value="">Pilih salah satu</option>
-                    <option value=5>Selalu</option>
-                    <option value=4>Sering</option>
-                    <option value=3>Kadang</option>
-                    <option value=2>Jarang</option>
-                    <option value=1>Tidak pernah</option>
-                  </select>
+                      <p>Divisi Kedisiplinan</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fa fa-shopping-cart"></i>
+                    </div>
+                  </div>
                 </div>
-
-                <div class="form-group">
-                  <label>IT# Apakah antum mengetik?</label>
-                  <select class="form-control" name="ngetik" required>
-                    <option value="">Pilih salah satu</option>
-                    <option value=5>Selalu</option>
-                    <option value=4>Sering</option>
-                    <option value=3>Kadang</option>
-                    <option value=2>Jarang</option>
-                    <option value=1>Tidak pernah</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label>IT# Apakah antum belajar?</label>
-                  <select class="form-control" name="belajar" required>
-                    <option value="">Pilih salah satu</option>
-                    <option value=5>Selalu</option>
-                    <option value=4>Sering</option>
-                    <option value=3>Kadang</option>
-                    <option value=2>Jarang</option>
-                    <option value=1>Tidak pernah</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label>Kedisiplinan# Apakah antum tidur tepat waktu?</label>
-                  <select class="form-control" name="tidur" required>
-                    <option value="">Pilih salah satu</option>
-                    <option value=5>Selalu</option>
-                    <option value=4>Sering</option>
-                    <option value=3>Kadang</option>
-                    <option value=2>Jarang</option>
-                    <option value=1>Tidak pernah</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label>Kedisiplinan# Apakah antum bangun tepat waktu?</label>
-                  <select class="form-control" name="bangun" required>
-                    <option value="">Pilih salah satu</option>
-                    <option value=5>Selalu</option>
-                    <option value=4>Sering</option>
-                    <option value=3>Kadang</option>
-                    <option value=2>Jarang</option>
-                    <option value=1>Tidak pernah</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label>Kedisiplinan# Apakah sholat tepat waktu?</label>
-                  <select class="form-control" name="sholat" required>
-                    <option value="">Pilih salah satu</option>
-                    <option value=5>Selalu</option>
-                    <option value=4>Sering</option>
-                    <option value=3>Kadang</option>
-                    <option value=2>Jarang</option>
-                    <option value=1>Tidak pernah</option>
-                  </select>
-                </div>
-
-                <div class="box-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-                
-              </form>
+                <!-- ./col -->
             </div>
-            <!-- /.box-body -->
+
           </div>
-          <!-- /.box -->
-            <?php 
-
-              }else{
-             ?>  
-
-          <div class="box">
-            <h2 style="text-align: center">
-              Terima kasih, anda telah mengisi survey!!!
-            </h2>
             
-          </div>
-
-            <?php 
-
-              }
-             ?>
 
         </section>
         <!-- /.Left col -->
