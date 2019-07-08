@@ -158,6 +158,13 @@
             </span>
           </a>
         </li>
+        <li>
+          <a href="members.php">
+            <i class="fa fa-group"></i> <span>Members</span>
+            <span class="pull-right-container">
+            </span>
+          </a>
+        </li>
         
     </section>
     <!-- /.sidebar -->
