@@ -25,8 +25,8 @@
 			}
 		}else{
 			header('location:../index.php?pesan=passwordsalah');
+			
 		}
-		
 	}else{
 		header('location:../index.php?pesan=akun_tidak_ada');
 	}
