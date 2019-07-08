@@ -1,6 +1,7 @@
 <?php 
   session_start();
   include'../config/config.php';
+  include'data.php';
   if (!isset($_SESSION['username'])) {
     header('location:../index.php?pesan=belum_login');
   }
@@ -71,7 +72,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="../assets/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><?php echo $_SESSION['username']; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -79,7 +80,7 @@
                 <img src="../assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  <?php echo $_SESSION['username']; ?>
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -125,7 +126,7 @@
           <img src="../assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?php echo $_SESSION['username']; ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -188,13 +189,29 @@
               <h3 class="box-title"></h3>
             </div>
             <div class="box-body">
+              <form method="post">
+                <!-- Date -->
+                <div class="form-group">
+                  <label>Date:</label>
+
+                  <div class="input-group date">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" class="form-control pull-right" id="datepicker" name="date" placeholder="<?php echo $date ?>">
+                  </div>
+                  <!-- /.input group -->
+                  <input type="submit" name="submit">
+                </div>
+                <!-- /.form group -->
+              </form>
               <!-- Small boxes (Stat box) -->
               <div class="row">
                 <div class="col-lg-3 col-xs-6">
                   <!-- small box -->
                   <div class="small-box bg-aqua">
                     <div class="inner">
-                      <h3>150</h3>
+                      <h3><?php echo $dataAgama; ?></h3>
 
                       <p>Divisi Agama</p>
                     </div>
@@ -210,7 +227,7 @@
                   <!-- small box -->
                   <div class="small-box bg-aqua">
                     <div class="inner">
-                      <h3>150</h3>
+                      <h3><?php echo $dataIt; ?></h3>
 
                       <p>Divisi IT</p>
                     </div>
@@ -226,7 +243,7 @@
                   <!-- small box -->
                   <div class="small-box bg-aqua">
                     <div class="inner">
-                      <h3>150</h3>
+                      <h3><?php echo $dataDis; ?></h3>
 
                       <p>Divisi Kedisiplinan</p>
                     </div>
@@ -276,6 +293,7 @@
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="../assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
@@ -305,5 +323,73 @@
 <script src="../assets/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../assets/dist/js/demo.js"></script>
+<!-- Page script -->
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
+    })
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      checkboxClass: 'icheckbox_minimal-red',
+      radioClass   : 'iradio_minimal-red'
+    })
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    })
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    //Timepicker
+    $('.timepicker').timepicker({
+      showInputs: false
+    })
+  })
+</script>
 </body>
 </html>
