@@ -189,7 +189,7 @@
       <div class="row">
         <!-- Left col -->
         <section class="col-lg-12 connectedSortable">
-          <?php switch ($_SESSION['msg']) {
+          <?php switch (isset($_SESSION['msg'])) {
             case 'success':
               echo '<div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
