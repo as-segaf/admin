@@ -189,43 +189,51 @@
       <div class="row">
         <!-- Left col -->
         <section class="col-lg-12 connectedSortable">
-          <?php switch (isset($_SESSION['msg'])) {
-            case 'success':
-              echo '<div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-check"></i> Sukses!</h4>
-                Passwrod berhasil di ubah.
-              </div>';
-              break;
-
-            case 'failed':
-              echo '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-ban"></i> Gagal!</h4>
-                Terjadi kesalahan, password gagal di ubah.
-              </div>';
-              break;
-
-            case "doesn't match":
-              echo '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-ban"></i> Gagal!</h4>
-                Password tidak cocok.
-              </div>';
-              break;
-
-              case 'wrong pass':
-                echo '<div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-ban"></i> Gagal!</h4>
-                Password salah.
-              </div>';
+          <?php
+           if (isset($_SESSION['msg'])) {
+            switch ($_SESSION['msg']) {
+              case 'success':
+                echo '<div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon fa fa-check"></i> Sukses!</h4>
+                  Passwrod berhasil di ubah.
+                </div>';
+                unset($_SESSION['msg']);
                 break;
+
+              case 'failed':
+                echo '<div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon fa fa-ban"></i> Gagal!</h4>
+                  Terjadi kesalahan, password gagal di ubah.
+                </div>';
+                unset($_SESSION['msg']);
+                break;
+
+              case "doesn't match":
+                echo '<div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon fa fa-ban"></i> Gagal!</h4>
+                  Password tidak cocok.
+                </div>';
+                unset($_SESSION['msg']);
+                break;
+
+                case 'wrong pass':
+                  echo '<div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon fa fa-ban"></i> Gagal!</h4>
+                  Password salah.
+                </div>';
+                unset($_SESSION['msg']);
+                  break;
+              
+              default:
+                session_unset($_SESSION['msg']);
+                break;
+              }
+            } ?>                
             
-            default:
-              unset($_SESSION['msg']);
-              break;
-          } ?>                
           <!-- general form elements disabled -->
             <div class="col-md-3">
 
@@ -293,7 +301,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer">
                       <button type="reset" class="btn btn-default">Cancel</button>
-                      <button type="submit" class="btn btn-info pull-right">Update</button>
+                      <button type="submit" name="submit" class="btn btn-info pull-right">Update</button>
                     </div>
                     <!-- /.box-footer -->
                   </form>
