@@ -9,25 +9,27 @@
 
 		$select = mysqli_query($host, "SELECT password FROM user WHERE id='$id'");
 		$data   = mysqli_fetch_array($select);
-		$update = mysqli_query($host, "UPDATE user SET password='$newPass' WHERE id='$id'");
 
-		if ($oldPass = $data['password']) {
-			if ($newPass = $newPass1) {
-				if ($update) {
+		if ($oldPass == $data['password']) {
+			if ($newPass == $rePass) {
+				if (mysqli_query($host, "UPDATE user SET password='$newPass' WHERE id='$id'")) {
 					$_SESSION['msg'] = "success";
 					header('location:profile.php');
 
 				}else{
 					$_SESSION['msg'] = "failed";
 					header('location:profile.php');
+					
 				}
 			}else{
 				$_SESSION['msg'] = "doesn't match";
 				header('location:profile.php');
+				
 			}
 		}else{
 			$_SESSION['msg'] = "wrong pass";
 			header('location:profile.php');
+			
 		}
 	}
 
